@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour
 {
@@ -12,14 +13,14 @@ public class HealthManager : MonoBehaviour
         uiManager = FindObjectOfType<UIManager>();
         maxHealthPoints = 100;  
         healthPoints = maxHealthPoints;
+        uiManager.UpdateHealth(healthPoints);
     }
 
     public void TakeDamage(int damagePoints)
     {
         if (healthPoints <= damagePoints)
         {
-            //gameover
-            return;
+            SceneManager.LoadScene("FPS parkour");
         }
         healthPoints -= damagePoints;
         uiManager.UpdateHealth(healthPoints);

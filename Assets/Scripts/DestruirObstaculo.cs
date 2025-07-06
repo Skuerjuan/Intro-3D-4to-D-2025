@@ -5,6 +5,7 @@ using UnityEngine;
 public class DestruirObstaculo : MonoBehaviour
 {
     public HealthManager healthManager;
+    public int damagePoints = 10;
 
     private void Start()
     {
@@ -13,11 +14,10 @@ public class DestruirObstaculo : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("Contacto");
         if (col.gameObject.name == "Player")
         {
             Destroy(gameObject);
-            healthManager.TakeDamage(10);
+            healthManager.TakeDamage(damagePoints);
         }
     }
 }
