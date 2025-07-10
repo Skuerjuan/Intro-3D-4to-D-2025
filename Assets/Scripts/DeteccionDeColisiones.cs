@@ -22,7 +22,6 @@ public class DeteccionDeColisiones : MonoBehaviour
 
     IEnumerator Reset()
     {
-        Destroy(gameObject);
         txtWon.SetActive(true);
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("FPS parkour");
