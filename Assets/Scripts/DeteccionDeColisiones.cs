@@ -1,24 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeteccionDeColisiones : MonoBehaviour
 {
-    public ScoreManager scoreManager;
-    public MercaderiaScript mercaderiaScript;
+    public GameObject txtWon;
 
     void Start()
     {
-        scoreManager = FindObjectOfType<ScoreManager>();   
-        mercaderiaScript = GetComponent<MercaderiaScript>();   
+        txtWon.SetActive(false);
     }
 
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.name == "Player")
         {
-            Destroy(gameObject);
-            scoreManager.AddScore(mercaderiaScript.scorePoints);
+            StartCoroutine(Reset());
         }
+    }
+
+    IEnumerator Reset()
+    {
+        Destroy(gameObject);
+        txtWon.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("FPS parkour");
     }
 }
